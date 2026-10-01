@@ -1,0 +1,79 @@
+filters:
+  and:
+    - file.inFolder("Film")
+properties:
+  file.name:
+    displayName: Titolo
+  note.director:
+    displayName: Regista
+  note.year:
+    displayName: Anno
+  note.genre:
+    displayName: Genere
+  note.available_on:
+    displayName: Dove guardarlo
+  note.watched_on:
+    displayName: Visto il
+  note.owned:
+    displayName: Ce l'ho
+  note.worth_owning:
+    displayName: Da avere
+views:
+  - type: table
+    name: Da vedere
+    filters:
+      and:
+        - status == "to-watch"
+    order:
+      - file.name
+      - director
+      - year
+      - available_on
+  - type: table
+    name: Visti
+    filters:
+      and:
+        - status == "watched"
+    order:
+      - file.name
+      - director
+      - year
+      - watched_on
+      - owned
+      - worth_owning
+    sort:
+      - property: director
+        direction: ASC
+    columnSize:
+      file.name: 154
+      note.owned: 127
+  - type: table
+    name: Da procurare
+    filters:
+      and:
+        - worth_owning == true
+        - owned != true
+    order:
+      - file.name
+      - director
+      - available_on
+  - type: table
+    name: Per anno
+    groupBy:
+      property: year
+      direction: ASC
+    order:
+      - file.name
+      - director
+      - genre
+      - status
+  - type: table
+    name: Full
+    order:
+      - file.name
+      - worth_owning
+      - director
+      - year
+      - watched_on
+      - status
+      - owned
