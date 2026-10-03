@@ -77,3 +77,5 @@ views:
       - watched_on
       - status
       - owned
+    columnSize:
+      note.worth_owning: 131
