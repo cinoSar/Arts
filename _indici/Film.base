@@ -47,6 +47,7 @@ views:
     columnSize:
       file.name: 154
       note.owned: 127
+      note.worth_owning: 138
   - type: table
     name: Da procurare
     filters:
